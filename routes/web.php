@@ -59,18 +59,18 @@ Route::prefix('admin')->group(function () {
 
     
     // Testimonials Routes  
-    // Route::group([  
-    //     'prefix' => 'testimonials'   
-    // ], function () {  
-    //     Route::get('', [TestimonialController::class, 'index'])->name('testimonials.index');  
-    //     Route::get('{id}/show', [TestimonialController::class, 'show'])->withTrashed()->name('testimonials.show');  
-    //     Route::get('create', [TestimonialController::class, 'create'])->name('testimonials.create');  
-    //     Route::post('', [TestimonialController::class, 'store'])->name('testimonials.store');  
-    //     Route::get('{id}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit');  
-    //     Route::put('{id}', [TestimonialController::class, 'update'])->name('testimonials.update');  
-    //     Route::delete('{id}/delete', [TestimonialController::class, 'destroy'])->name('testimonials.destroy');  
-    //     Route::get('trashed', [TestimonialController::class, 'showDeleted'])->name('testimonials.showDeleted');  
-    //     Route::patch('{id}', [TestimonialController::class, 'restore'])->name('testimonials.restore');  
-    //     Route::delete('{id}/forcedelete', [TestimonialController::class, 'forcedelete'])->name('testimonials.forcedelete');  
-    // });  
+    Route::group([  
+        'prefix' => 'testimonials'   
+    ], function () {  
+        Route::get('', [TestimonialController::class, 'index'])->name('testimonials.index');  
+        Route::get('{id}/show', [TestimonialController::class, 'show'])->withTrashed()->name('testimonials.show');  
+        Route::get('create', [TestimonialController::class, 'create'])->name('testimonials.create');  
+        Route::post('', [TestimonialController::class, 'store'])->name('testimonials.store');  
+        Route::get('{id}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit');  
+        Route::put('{id}', [TestimonialController::class, 'update'])->name('testimonials.update');  
+        Route::delete('{id}/delete', [TestimonialController::class, 'destroy'])->name('testimonials.destroy');  
+        Route::get('trashed', [TestimonialController::class, 'showDeleted'])->name('testimonials.showDeleted');  
+        Route::patch('{id}', [TestimonialController::class, 'restore'])->name('testimonials.restore');  
+        Route::delete('{id}/forcedelete', [TestimonialController::class, 'forcedelete'])->name('testimonials.forcedelete');  
+    });  
 });  

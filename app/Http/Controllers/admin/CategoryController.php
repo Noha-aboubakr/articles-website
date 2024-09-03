@@ -13,7 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-       return view('admin.categories');
+        $categories= Category::get();
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -21,7 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.add_category');
+        return view('admin.categories.create');
     }
 
     /**
@@ -29,7 +30,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = $request-> validate (['categoryname'=>'required|string|max:100',
+                  ]);
+
+        Category::create($category);
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -45,7 +50,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $categories= Category::findOrFail($id);
+        return view('admin.categories.edit', compact('categories'));
     }
 
     /**
@@ -53,14 +59,22 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $category = $request-> validate (['categoryname'=>'required|string|max:100',
+      
+        ]);
+          
+        Category::where('id', $id)->update($category);
+        return redirect()->route('categories.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public function destroy($id)
+{
+    $category = Category::findOrFail($id);
+    $category->delete();
+
+    return redirect()->route('categories.index');
+}
 }
