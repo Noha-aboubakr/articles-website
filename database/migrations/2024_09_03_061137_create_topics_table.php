@@ -19,7 +19,7 @@ return new class extends Migration
             $table->boolean('trending');  
             $table->string('image',2000)->nullable(); 
             $table->unsignedInteger('views')->default(0);  
-            $table->foreignId('category_id')->constrained('categories')->unique();  
+            $table->foreignId('category_id')->constrained('categories');  
             $table->timestamps();
         });
     }

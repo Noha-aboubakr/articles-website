@@ -27,7 +27,7 @@
 				<form action="" class="text-center h-100 px-3 d-flex flex-column justify-content-center">
 					<h3 class="fw-semibold mb-5">LOGIN FORM</h3>
 					<div class="input-group mb-3">
-						<input type="text" placeholder="Username" class="form-control">
+						<input type="text" placeholder="Usernamen" class="form-control">
 						<img src="assests/images/user-svgrepo-com.svg" alt="" class="input-group-text">
 					</div>
 					<div class="input-group mb-3">

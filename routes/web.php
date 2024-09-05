@@ -5,6 +5,9 @@ use App\Http\Controllers\Public\PublicController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\admin\TopicController; 
+use App\Http\Controllers\admin\TestimonialController; 
+
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -51,7 +54,7 @@ Route::prefix('admin')->group(function () {
         Route::get('', [TopicController::class, 'index'])->name('topics.index');  
         Route::get('create', [TopicController::class, 'create'])->name('topics.create');  
         Route::post('', [TopicController::class, 'store'])->name('topics.store'); 
-        Route::get('topics/{id}', [TopicController::class, 'show'])->name('topics.show'); 
+        Route::get('topic/{id}', [TopicController::class, 'show'])->name('topics.show'); 
         Route::get('edit/{id}', [TopicController::class, 'edit'])->name('topics.edit');  
         Route::put('{id}', [TopicController::class, 'update'])->name('topics.update');  
         Route::delete('delete/{id}', [TopicController::class, 'destroy'])->name('topics.destroy');    
@@ -69,8 +72,13 @@ Route::prefix('admin')->group(function () {
         Route::get('{id}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit');  
         Route::put('{id}', [TestimonialController::class, 'update'])->name('testimonials.update');  
         Route::delete('{id}/delete', [TestimonialController::class, 'destroy'])->name('testimonials.destroy');  
-        Route::get('trashed', [TestimonialController::class, 'showDeleted'])->name('testimonials.showDeleted');  
-        Route::patch('{id}', [TestimonialController::class, 'restore'])->name('testimonials.restore');  
-        Route::delete('{id}/forcedelete', [TestimonialController::class, 'forcedelete'])->name('testimonials.forcedelete');  
     });  
 });  
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

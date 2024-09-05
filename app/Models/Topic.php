@@ -10,13 +10,13 @@ class Topic extends Model
     use HasFactory;  
 
     protected $fillable = [
-        'title', 
+        'topictitle', 
         'content', 
         'published', 
         'trending', 
         'image',
-         'views', 
-         'category_id'];  
+        'views', 
+        'category_id'];  
 
     public function category()  
     {  
