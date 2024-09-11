@@ -1,11 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController; 
 use App\Http\Controllers\Public\PublicController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\admin\TopicController; 
 use App\Http\Controllers\admin\TestimonialController; 
+use App\Http\Controllers\Admin\ContactController;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -13,17 +16,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+ 
+// Route::post('/register', [RegisterController::class, 'register']);
+
+
+//login&logout
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');  
+Route::post('login', [LoginController::class, 'login']);  
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+
   //Public Routes
 Route::get('index', [PublicController::class, 'index'])->name('articles.index');
 Route::get('topicslisting', [PublicController::class, 'topicslisting'])->name('articles.topicslisting');
 Route::get('topicsdetail', [PublicController::class, 'topicsdetail'])->name('articles.topicsdetail');
 Route::get('testimonials', [PublicController::class, 'testimonials'])->name('articles.testimonials');
-Route::get('contact', [PublicController::class, 'contact'])->name('articles.contact');
+Route::get('contact', [ContactController::class, 'contact'])->name('articles.contact');
 Route::get('404', [PublicController::class, 'page404'])->name('articles.404');
 
 
  //Admin Routes
-Route::prefix('admin')->group(function () {  
+Route::prefix('admin')->middleware(['verified'])->group(function () {  
     //Users Routes  
     Route::group([  
         'prefix' => 'users',  
@@ -34,6 +47,7 @@ Route::prefix('admin')->group(function () {
         Route::get('edit/{id}', [UserController::class, 'edit'])->name('users.edit');  
         Route::put('{id}', [UserController::class, 'update'])->name('users.update');  
     });  
+
 
     // Categories Routes  
     Route::group([  
@@ -47,6 +61,7 @@ Route::prefix('admin')->group(function () {
         Route::delete('delete/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');    
     });  
 
+    
      // Topics Routes  
      Route::group([  
         'prefix' => 'topics'  
@@ -66,19 +81,28 @@ Route::prefix('admin')->group(function () {
         'prefix' => 'testimonials'   
     ], function () {  
         Route::get('', [TestimonialController::class, 'index'])->name('testimonials.index');  
-        Route::get('{id}/show', [TestimonialController::class, 'show'])->withTrashed()->name('testimonials.show');  
+        Route::get('{id}/show', [TestimonialController::class, 'show'])->name('testimonials.show');  
         Route::get('create', [TestimonialController::class, 'create'])->name('testimonials.create');  
         Route::post('', [TestimonialController::class, 'store'])->name('testimonials.store');  
         Route::get('{id}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit');  
         Route::put('{id}', [TestimonialController::class, 'update'])->name('testimonials.update');  
         Route::delete('{id}/delete', [TestimonialController::class, 'destroy'])->name('testimonials.destroy');  
     });  
+
+
+    // contacts Routes  
+    Route::group([  
+        'prefix' => 'contacts'   
+    ], function () {  
+        Route::Post('sendemail', [ContactController::class, 'sendemail'])->name('sendemail');
+        Route::get('messages', [ContactController::class, 'msgsindex'])->name('messages.msgsindex');  
+        Route::patch('message/{id}/mark-as-read', [ContactController::class, 'markAsRead']);
+        Route::get('{id}/show', [ContactController::class, 'show'])->name('message.show');   
+        Route::delete('{id}/delete', [ContactController::class, 'destroy'])->name('message.destroy');  
+    });  
 });  
+ 
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
+Auth::routes(['verify'=> true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

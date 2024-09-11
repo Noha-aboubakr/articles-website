@@ -1,6 +1,6 @@
 
-@include('admin.includes.head')
-@include('admin.includes.header')
+@extends('admin.layouts.main')
+@section('content')
 
     <div class="container my-5">
         <div class="mx-2">
@@ -24,14 +24,12 @@
                       @foreach($users as $user)
                         <tr>
                             <th scope="row">{{ $user->created_at->format('d M Y') }}</th>
-                            {{-- <td>{{$user['firstname','lastname']}}</td> --}}
                             <td>{{ $user->firstname }} {{ $user->lastname }}</td>
                             {{-- <td>{{$user['username']}}</td> --}}
                             <td>{{ $user->username }}</td>
-                            {{-- <td>{{$user['email']}}</td>
-                            <td>@if($user['active']== 1) Yes @else No @endif</td> --}}
+                            {{-- <td>{{$user['email']}}</td> --}}
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->active ? 'Yes' : 'No' }}</td>
+                            <td>@if($user['active']== 1) Yes @else No @endif</td>
                             <td class="text-center"><a class="text-decoration-none text-dark" href="{{route('users.edit', $user->id) }}"><img src="{{asset('adminassets/images/edit-svgrepo-com.svg')}}"></a></td>
                         </tr>
                         @endforeach 
@@ -41,4 +39,4 @@
         </div>
     </div>
    
-    @include('admin.includes.footerjs')
+    @endsection

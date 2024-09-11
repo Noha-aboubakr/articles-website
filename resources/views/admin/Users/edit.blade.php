@@ -1,5 +1,5 @@
-@include('admin.includes.head')
-@include('admin.includes.header')
+@extends('admin.layouts.main')
+@section('content')
   
   <div class="container my-5">
     <div class="mx-2">
@@ -7,6 +7,7 @@
       <form action="{{ route('users.update', $user->id) }}" method="POST" class="px-md-5">
         @csrf
         @method('PUT')
+
         <div class="form-group mb-3 row">
           <label for="" class="form-label col-md-2 fw-bold text-md-end">Name:</label>
           <div class="col-md-5">
@@ -48,17 +49,30 @@
           <label for="" class="form-label col-md-2 fw-bold text-md-end">Password:</label>
           <div class="col-md-10">
             <input type="password" placeholder="Password" class="form-control py-2" 
-            name="password" value="{{old('password', $user['password'])}}" />
+            name="password"/>
             @error('password')
             <div class="alert alert-warning">{{$message}}</div>
             @enderror
           </div>
         </div>
+        <div class="form-group mb-3 row">  
+          <label for="" class="form-label col-md-2 fw-bold text-md-end">Confirm Password:</label>  
+          <div class="col-md-10">  
+              <input type="password" placeholder="Confirm Password" class="form-control py-2" 
+              name="password_confirmation"/>  
+              @error('password_confirmation')  
+                  <div class="alert alert-warning">{{ $message }}</div>  
+              @enderror  
+          </div>  
+      </div>
         <div class="form-group mb-3 row">
           <label for="" class="form-label col-md-2 fw-bold text-md-end">Active:</label>
           <div class="col-md-10">
             <input type="checkbox" class="form-check-input" style="padding: 0.7rem;" 
             name="active" @checked(old('active', $user->active)) />
+            @error('active')
+            <div class="alert alert-warning">{{$message}}</div>
+            @enderror
           </div>
         </div>
         <div class="text-md-end">
@@ -70,4 +84,4 @@
     </div>
   </div>
 
-  @include('admin.includes.footerjs')
+  @endsection

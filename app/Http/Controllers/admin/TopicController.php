@@ -66,6 +66,7 @@ class TopicController extends Controller
             $topic->increment('views');  
             return view('admin.topics.topic_details', compact('topic'));  
         }  
+
     
     /**
      * Show the form for editing the specified resource.
@@ -96,7 +97,6 @@ class TopicController extends Controller
     if ($request->hasFile('image')) {  
         $data['image'] = $this->uploadFile($request->image, 'adminassets/images/topics');  
     }  
-    // $data['category_id']=$request->input('category'); 
     $data['trending']=isset($request->trending); 
     $data['published']=isset($request->published);  
 

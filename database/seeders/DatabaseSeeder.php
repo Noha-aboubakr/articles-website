@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Topic;
 use App\Models\Testimonial;
+use App\Models\Contact;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
         Category::factory(10)->create();
         Topic::factory(10)->create();
         Testimonial::factory(10)->create();
+        Contact::factory(10)->create();
 
         // User::factory()->create([
         //     'name' => 'Test User',

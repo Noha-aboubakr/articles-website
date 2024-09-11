@@ -1,5 +1,5 @@
-@include('admin.includes.head')
-@include('admin.includes.header')
+@extends('admin.layouts.main')
+@section('content')
   
   <div class="container my-5">
     <div class="mx-2">
@@ -25,5 +25,5 @@
     </div>
   </div>
 
-  @include('admin.includes.footerjs')
+  @endsection
  

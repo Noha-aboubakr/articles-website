@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -36,18 +37,18 @@ class UserController extends Controller
             'firstname' => 'required|string|max:100',  
             'lastname' => 'required|string|max:100',  
             'username' => 'required|string|max:100',  
-            'email' => 'required|email|max:100|unique:users,email',  
-            'password' => 'required|string|min:5|confirmed', 
-            'active' => 'nullable|boolean',   
-        ]);  
-        
+            'email' => 'required|email|max:100|unique:users,email', 
+            'password' => 'required|string|min:8|confirmed',  
+            ]);
+     
+        $data['email_verified_at'] = now();
         $data['password'] = Hash::make($data['password']);  
         $data['active']=isset($request->active);  
     
         User::create($data);  
         return redirect()->route('users.index');  
     }
- 
+
     /**
      * Display the specified resource.
      */
@@ -75,15 +76,15 @@ class UserController extends Controller
             'lastname' => 'required|string|max:100',  
             'username' => 'required|string|max:100',  
             'email' => 'required|email|max:100',  
-            'password' => 'nullable|string|min:5|confirmed', 
+            'password' => 'required|string|min:8|confirmed', 
         ]);  
     
         if ($request->filled('password')) {  
             $data['password'] = Hash::make($data['password']);  
         }  
-    
+
         $data['active']=isset($request->active);  
-    
+
         User::where('id', $id)->update($data);  
         return redirect()->route('users.index');  
     }
@@ -95,7 +96,6 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-
         return redirect()->route('users.index');
 }
 

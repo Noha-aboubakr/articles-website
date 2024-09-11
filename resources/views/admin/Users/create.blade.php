@@ -1,11 +1,20 @@
-@include('admin.includes.head')
-@include('admin.includes.header')
+@extends('admin.layouts.main')
+@section('content')
 
 <div class="container my-5">
     <div class="mx-2">
         <h2 class="fw-bold fs-2 mb-5 pb-2">Add USER</h2>
         <form action="{{ route('users.store') }}" method="POST" class="px-md-5">
             @csrf
+            @if ($errors->any())  
+    <div>  
+        <ul>  
+            @foreach ($errors->all() as $error)  
+                <li>{{ $error }}</li>  
+            @endforeach  
+        </ul>  
+    </div>  
+@endif
             <div class="form-group mb-3 row">
                 <label for="" class="form-label col-md-2 fw-bold text-md-end">Name:</label>
                 <div class="col-md-5">
@@ -60,8 +69,11 @@
             <div class="form-group mb-3 row">
                 <label for="active" class="form-label col-md-2 fw-bold text-md-end">Active:</label>
                 <div class="col-md-10">
-                    <input type="checkbox" name="active" id="active" class="form-check-input" />
+                    <input type="checkbox" name="active" id="active" class="form-check-input" value="1" @checked(old('active'))/>
                     <label for="active" class="form-check-label"></label>
+                    @error('active')
+                    <div class="alert alert-warning">{{$message}}</div>
+                    @enderror
                 </div>
             </div>
             <div class="text-md-end">
@@ -73,4 +85,4 @@
     </div>
 </div>
 
-@include('admin.includes.footerjs')
+@endsection

@@ -23,11 +23,16 @@
                 <div class="dropdown-header text-center">
                   <img class="img-md rounded-circle" src="{{asset('adminassets/images//avatar-default.svg')}}" alt="Profile image"
                     width="80" height="80" />
-                  <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
-                  <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+                  <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->username }}</p>
+                  <p class="fw-light text-muted mb-0">{{ Auth::user()->email }}</p>
                 </div>
                 <a class="dropdown-item">My Profile</a>
-                <a class="dropdown-item">Sign Out</a>
+                {{-- <a class="dropdown-item" href="{{ route('logout') }}">Sign Out</a> --}}
+                   <!-- Logout Form -->  
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">  
+      @csrf  
+  </form>  
+  <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign Out</a>  
                 <p class="footer" style="padding-top: 15px; font-size: 9px; text-align: center">
                   Privacy Policy . Terms . Cookies
                 </p>
@@ -99,7 +104,7 @@
               <li><a class="dropdown-item" href="{{ route('testimonials.index') }}">All testimonials</a></li>
             </ul>
           </li>
-          <li><a class="nav-item nav-link" href="messages.html">MESSAGES</a></li>
+          <li><a class="nav-item nav-link" href="{{ route('messages.msgsindex') }}">MESSAGES</a></li>
         </ul>
       </div>
     </div>

@@ -1,6 +1,6 @@
-@include('admin.includes.head')
-@include('admin.includes.header')
-  
+@extends('admin.layouts.main')
+@section('content')
+
   <div class="container my-5">
     <div class="mx-2">
       <h2 class="fw-bold fs-2 mb-5 pb-2">Edit Category</h2>
@@ -25,4 +25,4 @@
     </div>
   </div>
   
-  @include('admin.includes.footerjs')
+  @endsection

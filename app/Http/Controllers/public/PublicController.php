@@ -28,10 +28,10 @@ class PublicController extends Controller
         return view ('public.testimonials'); 
     }  
 
-    public function contact()  
-    {  
-        return view ('public.contact'); 
-    }   
+    // public function contact()  
+    // {  
+    //     return view ('public.contact'); 
+    // }   
 
     public function page404(){
 

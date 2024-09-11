@@ -1,5 +1,5 @@
-@include('admin.includes.head')
-@include('admin.includes.header')
+@extends('admin.layouts.main')
+@section('content')
 
     <div class="container my-5">
         <div class="mx-2">
@@ -37,7 +37,7 @@
 
                                 <td class="text-center">  
                                   <form action="{{ route('testimonials.destroy', $testimonial->id) }}" method="POST"  
-                                   onclick="return confirm('Are you sure you want to delete this topic?');">  
+                                   onclick="return confirm('Are you sure you want to delete this testimonial?');">  
                                    @csrf  
                                    @method('DELETE')  
                                   <button type="submit" class="bg-transparent border-0">  
@@ -55,5 +55,5 @@
         </div>
     </div>
 
-    @include('admin.includes.footerjs')
+    @endsection
    
