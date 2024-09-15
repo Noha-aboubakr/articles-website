@@ -22,4 +22,11 @@ class Topic extends Model
     {  
         return $this->belongsTo(Category::class);  
     }  
-} 
+
+    public function incrementViews()  
+    {  
+        $this->increment('views');  
+        $this->save();  
+    }  
+}  
+

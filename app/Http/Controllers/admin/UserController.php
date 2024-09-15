@@ -43,7 +43,7 @@ class UserController extends Controller
      
         $data['email_verified_at'] = now();
         $data['password'] = Hash::make($data['password']);  
-        $data['active']=isset($request->active);  
+        $data['active']=1;  
     
         User::create($data);  
         return redirect()->route('users.index');  
@@ -77,13 +77,15 @@ class UserController extends Controller
             'username' => 'required|string|max:100',  
             'email' => 'required|email|max:100',  
             'password' => 'required|string|min:8|confirmed', 
+           
         ]);  
     
         if ($request->filled('password')) {  
             $data['password'] = Hash::make($data['password']);  
         }  
 
-        $data['active']=isset($request->active);  
+        $data['active']=isset($request->active)? 1 : 0; 
+        // $data['active'] = $request->has('active') ? 1 : 0;  
 
         User::where('id', $id)->update($data);  
         return redirect()->route('users.index');  

@@ -17,7 +17,8 @@ Route::get('/', function () {
 });
 
  
-// Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
+Route::post('/bookmark/{topic_id}', [TopicController::class, 'bookmark'])->name('bookmark')->middleware('auth');
 
 
 //login&logout
@@ -29,7 +30,7 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
   //Public Routes
 Route::get('index', [PublicController::class, 'index'])->name('articles.index');
 Route::get('topicslisting', [PublicController::class, 'topicslisting'])->name('articles.topicslisting');
-Route::get('topicsdetail', [PublicController::class, 'topicsdetail'])->name('articles.topicsdetail');
+Route::get('topicsdetail/{id}', [PublicController::class, 'topicsdetail'])->name('articles.topicsdetail');
 Route::get('testimonials', [PublicController::class, 'testimonials'])->name('articles.testimonials');
 Route::get('contact', [ContactController::class, 'contact'])->name('articles.contact');
 Route::get('404', [PublicController::class, 'page404'])->name('articles.404');

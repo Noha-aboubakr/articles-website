@@ -76,5 +76,14 @@ class CategoryController extends Controller
     $category->delete();
 
     return redirect()->route('categories.index');
+
+    // $category = Category::findOrFail($id);   
+    // if ($category->topics()->count() > 0) {  
+    //     return redirect()->route('categories.index')->with('error', 'Cannot delete category with associated topics.');  
+    // }  
+
+    // $category->delete();  
+    // return redirect()->route('categories.index');  
+}  
 }
-}
+

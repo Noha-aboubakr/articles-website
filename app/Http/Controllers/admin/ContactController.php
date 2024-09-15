@@ -50,7 +50,7 @@ class ContactController extends Controller
     public function show(string $id)
     {
         $contact= Contact::findOrFail($id);
-        $contact->is_read = true;  
+        $contact->is_read = 1;  
         $contact->save(); 
         return view ('admin.messages.message_details', compact('contact'));
     }
@@ -61,7 +61,6 @@ class ContactController extends Controller
     $contact = Contact::findOrFail($id);  
     $contact->is_read = 1;  
     $contact->save();  
-    // return response()->json(['success' => true]);  
     }  
 
     /**

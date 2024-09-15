@@ -62,8 +62,7 @@ class TopicController extends Controller
      */
     public function show(string $id)
     {
-            $topic = Topic::with('category')->findOrFail($id);  
-            $topic->increment('views');  
+            $topic = Topic::with('category')->findOrFail($id);    
             return view('admin.topics.topic_details', compact('topic'));  
         }  
 
@@ -99,7 +98,6 @@ class TopicController extends Controller
     }  
     $data['trending']=isset($request->trending); 
     $data['published']=isset($request->published);  
-
   
     Topic::where('id', $id)->update($data);  
     return redirect()->route('topics.index');  
@@ -112,5 +110,12 @@ class TopicController extends Controller
     {
         Topic::where('id', $id)->delete();
         return redirect()->route('topics.index');
+    }
+
+    public function bookmark($topic_id)  
+    {  
+        $topic = Topic::findOrFail($topic_id); 
+        $topic->increment('views');
+        return redirect()->back()->with('success', 'Topic bookmarked and view count incremented!');  
     }
 }

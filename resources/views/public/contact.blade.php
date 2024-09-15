@@ -35,7 +35,8 @@ https://templatemo.com/tm-590-topic-listing
 
         <main>
 
-            <nav class="navbar navbar-expand-lg">
+            @include('public.includes.navbar')
+            {{-- <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <a class="navbar-brand" href="index.html">
                         <i class="bi-back"></i>
@@ -74,9 +75,9 @@ https://templatemo.com/tm-590-topic-listing
                         </div>
                     </div>
                 </div>
-            </nav>
+            </nav> --}}
 
-
+{{-- pagecontent --}}
             <header class="site-header d-flex flex-column justify-content-center align-items-center">
                 <div class="container">
                     <div class="row align-items-center">
@@ -97,7 +98,7 @@ https://templatemo.com/tm-590-topic-listing
                 </div>
             </header>
 
-
+            
             <section class="section-padding section-bg">
                 <div class="container">
                     <div class="row">
