@@ -1,3 +1,6 @@
+@extends('public.layouts.main')
+@section('head')
+
 <!doctype html>
 <html lang="en">
 
@@ -24,18 +27,13 @@
     <!--
 
 TemplateMo 590 topic listing
-
 https://templatemo.com/tm-590-topic-listing
-
 -->
 </head>
-
 <body id="top">
+@endsection
 
-    <main>
-
-        @include('public.includes.navbar')
-        
+    @section('content')
         <section class="hero-section d-flex justify-content-center align-items-center" style="height: 100vh;">
             <div class="container">
                 <div class="row">
@@ -51,7 +49,4 @@ https://templatemo.com/tm-590-topic-listing
                 </div>
             </div>
         </section>
-    </main>
-
-    @include('public.includes.footer')
-    @include('public.includes.footerjs')
+    @endsection
