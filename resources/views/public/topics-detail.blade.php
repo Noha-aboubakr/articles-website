@@ -1,3 +1,6 @@
+@extends('public.layouts.main')
+@section('head')
+
 <!doctype html>
 <html lang="en">
 
@@ -23,20 +26,18 @@
 
         <link href="{{asset('publicassets/css/templatemo-topic-listing.css')}}" rel="stylesheet">
 <!--
-
 TemplateMo 590 topic listing
-
 https://templatemo.com/tm-590-topic-listing
-
 -->
     </head>
-
     <body id="top">
-        <main>
+@endsection
 
-       @include('public.includes.navbar')
+@section('header')
        @include('public.includes.topicsdetailheader')
+@endsection
 
+@section('content')
             <section class="topics-detail-section section-padding" id="topics-detail">
                 <div class="container">
                     <div class="row">
@@ -47,7 +48,6 @@ https://templatemo.com/tm-590-topic-listing
                     </div>
                 </div>
             </section>
-
 
             <section class="section-padding section-bg">
                 <div class="container">
@@ -72,7 +72,5 @@ https://templatemo.com/tm-590-topic-listing
                     </div>
                 </div>
             </section>
-        </main>
-		
-        @include('public.includes.footer')
-        @include('public.includes.footerjs')
+      
+@endsection

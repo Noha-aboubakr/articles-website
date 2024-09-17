@@ -22,7 +22,7 @@
                         <tr>
                             <th scope="row">{{ $contact->created_at->format('d M Y') }}</th>
                             <td><a href="{{ route('message.show', $contact->id) }}" 
-                              class="text-decoration-none text-dark">{{Str::limit($contact->message, 30, $end = '...') }}</a></td>
+                              class="text-decoration-none text-dark">{{Str::limit($contact->message, 30, '...') }}</a></td>
                             <td>{{ $contact->name }}</td>
           
                             <td class="text-center">  
@@ -44,6 +44,7 @@
             </div>
         </div>
         <hr>
+        
         <div class="mx-2">
             <div class="row justify-content-between mb-2 pb-2">
                 <h2 class="fw-bold fs-2 col-auto">Read Messages</h2>

@@ -8,7 +8,6 @@ use App\Models\Topic;
 use App\Models\Category; 
 use Illuminate\Http\Request;
 
-
 class TopicController extends Controller
 {
     use common;
@@ -20,7 +19,6 @@ class TopicController extends Controller
     {  
         $topics = Topic::with('category')->get();  
         return view('admin.topics.index', compact('topics')); 
-
     } 
 
     /**
@@ -31,45 +29,48 @@ class TopicController extends Controller
         $categories = Category::select('id', 'category_name')->get(); 
         return view('admin.topics.create', compact('categories'));  
     }
+
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)  
     {  
         $data = $request->validate([  
             'topictitle' => 'required|string|max:100',  
-            'category' => 'required|exists:categories,id',  
+            'category' => 'required|exists:categories,id',   
             'content' => 'required|string',  
             'trending' => 'boolean',  
             'published' => 'boolean',  
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',   
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',  
         ]);  
-     
+    
         if ($request->hasFile('image')) {  
             $data['image'] = $this->uploadFile($request->image, 'adminassets/images/topics');  
         }  
+    
         $data['category_id'] = $request->input('category');  
         $data['trending'] = isset($request->trending);  
         $data['published'] = isset($request->published);  
-
-        // dd($topic);
-        Topic::create($data); 
+    
+        Topic::create($data);  
         return redirect()->route('topics.index');  
     }
      
     /**
      * Display the specified resource.
      */
+
     public function show(string $id)
     {
             $topic = Topic::with('category')->findOrFail($id);    
             return view('admin.topics.topic_details', compact('topic'));  
         }  
-
     
     /**
      * Show the form for editing the specified resource.
      */
+    
     public function edit(string $id)  
     {  
         $topic = Topic::findOrFail($id);   
@@ -81,27 +82,27 @@ class TopicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)  
-{  
-    $data = $request->validate([  
-        'topictitle' => 'required|string|max:100',  
-        'category_id' => 'required|exists:categories,id',  
-        'content' => 'required|string',  
-        'trending' => 'boolean',  
-        'published' => 'boolean',  
-        'image' => 'nullable|mimes:jpeg,jpg,png|max:2048',  
-        
-    ]);  
 
-    if ($request->hasFile('image')) {  
-        $data['image'] = $this->uploadFile($request->image, 'adminassets/images/topics');  
-    }  
-    $data['trending']=isset($request->trending); 
-    $data['published']=isset($request->published);  
-  
-    Topic::where('id', $id)->update($data);  
-    return redirect()->route('topics.index');  
-}  
+     public function update(Request $request, string $id)  
+     {  
+        // dd($request->all());
+         $data = $request->validate([  
+             'topictitle' => 'required|string|max:100',  
+             'category_id' => 'required|exists:categories,id',  
+             'content' => 'required|string',   
+             'image' => 'nullable|mimes:jpeg,jpg,png|max:2048',   
+         ]);  
+     
+         if ($request->hasFile('image')) {   
+             $data['image'] = $this->uploadFile($request->image, 'adminassets/images/topics');  
+         }   
+         
+         $data['published']=isset($request->published);  
+         $data['trending']=isset($request->trending);  
+        
+         Topic::where('id', $id)->update($data);  
+         return redirect()->route('topics.index');  
+     }
 
     /**
      * Remove the specified resource from storage.
@@ -116,6 +117,6 @@ class TopicController extends Controller
     {  
         $topic = Topic::findOrFail($topic_id); 
         $topic->increment('views');
-        return redirect()->back()->with('success', 'Topic bookmarked and view count incremented!');  
+        return redirect()->back()->with('success', 'Topic bookmarked!');  
     }
 }

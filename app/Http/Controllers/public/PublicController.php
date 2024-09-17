@@ -12,15 +12,17 @@ class PublicController extends Controller
 {  
     public function index()  
     {  
-        $topics = Topic::with('category')  
+         $topics = Topic::with('category')  
+        ->where('published', 1)   
         ->orderBy('views', 'desc')  
         ->take(2)  
-        ->get();  
-
+        ->get(); 
 
         $categories = Category::with(['topics' => function ($query) {   
-            $query->where('published', 1)->take(3);   
-        }])->limit(4)->get();  
+            $query
+            ->where('published', 1)
+            ->take(3);   
+        }])->limit(5)->get();  
 
 
         $testimonials = Testimonial::where('published', 1)->latest()->take(3)->get();  
@@ -29,12 +31,24 @@ class PublicController extends Controller
     }  
 
 
-    public function topicslisting()  
+    public function topicsListing()  
     {  
-        return view ('public.topics-listing'); 
-    }  
+        //popular topics (the most viewed topics in each category)
+        $perPage = 3;  
+        $categories = Category::with(['topics' => function ($query) {  
+            $query->where('published', 1)  
+                  ->orderBy('views', 'desc')  
+                  ->limit(1);  
+        }])->paginate($perPage);   
 
-   
+    //trending topics
+        $topics = Topic::where('published', 1)  
+                       ->orderBy('views', 'desc')  
+                       ->take(2)  
+                       ->get();  
+        return view('public.topics-listing', compact('categories', 'topics'));   
+    }
+
      public function topicsdetail($id) 
     {  
         $topic = Topic::findOrFail($id);  

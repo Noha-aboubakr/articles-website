@@ -17,6 +17,7 @@ class TestimonialController extends Controller
     {
         $testimonials = Testimonial::all();
         return view('admin.testimonials.index', compact('testimonials'));
+     
     }
 
     /**
@@ -75,7 +76,6 @@ class TestimonialController extends Controller
       $data = $request->validate([  
         'name' => 'required|string|max:100',  
         'content' => 'required|string',   
-        'published' => 'boolean',  
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',     
     ]);  
 

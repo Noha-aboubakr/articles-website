@@ -1,9 +1,10 @@
+</main>
 <footer class="site-footer section-padding">
     <div class="container">
         <div class="row">
 
             <div class="col-lg-3 col-12 mb-4 pb-2">
-                <a class="navbar-brand mb-2" href="index.html">
+                <a class="navbar-brand mb-2" href="{{ route('articles.index') }}">
                     <i class="bi-back"></i>
                     <span>Topic</span>
                 </a>
@@ -14,11 +15,11 @@
 
                 <ul class="site-footer-links">
                     <li class="site-footer-link-item">
-                        <a href="#" class="site-footer-link">Home</a>
+                        <a href="{{ route('articles.index') }}" class="site-footer-link">Home</a>
                     </li>
 
                     <li class="site-footer-link-item">
-                        <a href="#" class="site-footer-link">How it works</a>
+                        <a href="{{ route('articles.index') }}" class="site-footer-link">How it works</a>
                     </li>
 
                     <li class="site-footer-link-item">
@@ -26,7 +27,7 @@
                     </li>
 
                     <li class="site-footer-link-item">
-                        <a href="#" class="site-footer-link">Contact</a>
+                        <a href="{{ route('articles.contact') }}" class="site-footer-link">Contact</a>
                     </li>
                 </ul>
             </div>

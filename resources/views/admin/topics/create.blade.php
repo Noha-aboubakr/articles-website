@@ -16,20 +16,20 @@
           </div>
         </div>
         <div class="form-group mb-3 row">
-          <label for="category" class="form-label col-md-2 fw-bold text-md-end">Category:</label>
-          <div class="col-md-10">
-              <select name="category" id="category" class="form-control py-1">
-                  <option value="">Select a category</option>
-                  @foreach ($categories as $category)
-                      <option value="{{ $category->id }}" @selected(old('category_id')==$category->id)>
-                          {{ $category->category_name }}
-                      </option>
-                  @endforeach
-              </select>
-              @error('category')
-                  <div class="alert alert-warning">{{ $message }}</div>
-              @enderror
-          </div>
+          <label for="category" class="form-label col-md-2 fw-bold text-md-end">Category:</label>  
+  <div class="col-md-10">  
+    <select name="category" id="category" class="form-control py-1">  
+        <option value="">Select a category</option>  
+        @foreach ($categories as $category)  
+            <option value="{{ $category->id }}" @selected(old('category') == $category->id)>  
+                {{ $category->category_name }}  
+            </option>  
+        @endforeach  
+        </select>  
+          @error('category') 
+        <div class="alert alert-warning">{{ $message }}</div>  
+          @enderror  
+  </div>
       </div>
         <div class="form-group mb-3 row">
           <label for="" class="form-label col-md-2 fw-bold text-md-end">Content:</label>

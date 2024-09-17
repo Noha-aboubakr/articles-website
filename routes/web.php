@@ -72,7 +72,7 @@ Route::prefix('admin')->middleware(['verified'])->group(function () {
         Route::post('', [TopicController::class, 'store'])->name('topics.store'); 
         Route::get('topic/{id}', [TopicController::class, 'show'])->name('topics.show'); 
         Route::get('edit/{id}', [TopicController::class, 'edit'])->name('topics.edit');  
-        Route::put('{id}', [TopicController::class, 'update'])->name('topics.update');  
+        Route::put('topic/{id}/update', [TopicController::class, 'update'])->name('topics.update');  
         Route::delete('delete/{id}', [TopicController::class, 'destroy'])->name('topics.destroy');    
     }); 
 

@@ -66,16 +66,7 @@
                     @enderror  
                 </div>  
             </div>
-            {{-- <div class="form-group mb-3 row">
-                <label for="active" class="form-label col-md-2 fw-bold text-md-end">Active:</label>
-                <div class="col-md-10">
-                    <input type="checkbox" name="active" value="1" @checked(old('active', 1))>
-                    <label for="active" class="form-check-label"></label>
-                    @error('active')
-                    <div class="alert alert-warning">{{$message}}</div>
-                    @enderror
-                </div>
-            </div> --}}
+
             <div class="text-md-end">
                 <button class="btn mt-4 btn-secondary text-white fs-5 fw-bold border-0 py-2 px-md-5">
                     Add User
