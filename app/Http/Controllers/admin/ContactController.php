@@ -32,7 +32,7 @@ class ContactController extends Controller
 
         Mail::to('hello@example.com')->send(new ContactMail($data));     
         
-        return redirect()->route('articles.contact')->with('Your message has been sent successfully!'); 
+        return redirect()->route('articles.contact'); 
 }  
 
  /**

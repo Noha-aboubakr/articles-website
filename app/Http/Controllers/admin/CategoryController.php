@@ -5,7 +5,6 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
-
 class CategoryController extends Controller
 {
     /**
@@ -32,7 +31,6 @@ class CategoryController extends Controller
     {
         $category = $request-> validate (['category_name'=>'required|string|max:100',
                   ]);
-
         Category::create($category);
         return redirect()->route('categories.index');
     }
@@ -60,9 +58,7 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $category = $request-> validate (['category_name'=>'required|string|max:100',
-      
-        ]);
-          
+        ]);  
         Category::where('id', $id)->update($category);
         return redirect()->route('categories.index');
     }

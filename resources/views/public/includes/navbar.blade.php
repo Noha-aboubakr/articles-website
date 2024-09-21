@@ -16,7 +16,7 @@
                         <a class="nav-link {{ request()->routeIs('articles.index') ? 'active' : '' }}"   
                             href="{{ route('articles.index') }}">Home</a>  
                     </li>  
-
+ 
                     <li class="nav-item">  
                         <a class="nav-link {{ request()->routeIs('articles.topicslisting') ? 'active' : '' }}"   
                             href="{{ route('articles.topicslisting') }}">Topics Listing</a>   

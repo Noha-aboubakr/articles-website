@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;   
 use App\Http\Controllers\Controller;  
 use Illuminate\Foundation\Auth\AuthenticatesUsers;  
-use Illuminate\Support\Facades\Auth; // Added use statement for Auth  
+use Illuminate\Support\Facades\Auth; 
+use Illuminate\Http\Response;
 
 class LoginController extends Controller  
 {  
@@ -46,18 +47,16 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response  
      */  
     public function login(Request $request)  
-    {  
-        // Validate the request  
+    {   
         $this->validate($request, [  
-            'username' => 'required|string',  // Corrected validation rule  
+            'username' => 'required|string',  
             'password' => 'required|string|min:8',  
         ]);  
-
-        // Attempt to log in the user  
+  
         $credentials = $request->only('username', 'password');  
 
         if (Auth::attempt($credentials)) {    
-            // Check if the user's account is active  
+          
             if (Auth::user()->active) {  
                 return redirect()->intended($this->redirectTo);  
             } else {  
@@ -67,8 +66,7 @@ class LoginController extends Controller
                 ]);  
             }  
         }  
-
-        // Handle failed login attempt  
+         
         return back()->withErrors([  
             'username' => 'These credentials do not match our records.',  
         ]);  

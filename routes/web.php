@@ -15,17 +15,14 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
-
  
-Route::post('/register', [RegisterController::class, 'register'])->name('register');
+// Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/bookmark/{topic_id}', [TopicController::class, 'bookmark'])->name('bookmark')->middleware('auth');
-
 
 //login&logout
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');  
 Route::post('login', [LoginController::class, 'login']);  
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
-
 
   //Public Routes
 Route::get('index', [PublicController::class, 'index'])->name('articles.index');
@@ -34,7 +31,6 @@ Route::get('topicsdetail/{id}', [PublicController::class, 'topicsdetail'])->name
 Route::get('testimonials', [PublicController::class, 'testimonials'])->name('articles.testimonials');
 Route::get('contact', [ContactController::class, 'contact'])->name('articles.contact');
 Route::get('404', [PublicController::class, 'page404'])->name('articles.404');
-
 
  //Admin Routes
 Route::prefix('admin')->middleware(['verified'])->group(function () {  

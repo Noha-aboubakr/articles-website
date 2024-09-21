@@ -44,7 +44,6 @@
             </div>
         </div>
         <hr>
-        
         <div class="mx-2">
             <div class="row justify-content-between mb-2 pb-2">
                 <h2 class="fw-bold fs-2 col-auto">Read Messages</h2>

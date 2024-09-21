@@ -29,52 +29,52 @@
                     <h3 class="fw-semibold mb-5">REGISTRATION FORM</h3>  
                     <div class="form-group d-flex mb-3">  
                         <input type="text" placeholder="First Name" class="form-control me-2 @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>  
-                        @error('firstname')  
+                        {{-- @error('firstname')  
                         <span class="invalid-feedback" role="alert">  
                             <strong>{{ $message }}</strong>  
                         </span>  
-                        @enderror  
+                        @enderror   --}}
                         <input type="text" placeholder="Last Name" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname">  
-                        @error('lastname')  
+                        {{-- @error('lastname')  
                         <span class="invalid-feedback" role="alert">  
                             <strong>{{ $message }}</strong>  
                         </span>  
-                        @enderror  
+                        @enderror   --}}
                     </div>  
                     <div class="input-group mb-3">  
                         <input type="text" placeholder="Username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username">  
-                        @error('username')  
+                        {{-- @error('username')  
                         <span class="invalid-feedback" role="alert">  
                             <strong>{{ $message }}</strong>  
                         </span>  
-                        @enderror  
+                        @enderror   --}}
                         <img src="{{ asset('adminassets/images/user-svgrepo-com.svg') }}" alt="" class="input-group-text">  
                     </div>  
                     <div class="input-group mb-3">  
                         <input type="email" placeholder="Email Address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">  
-                        @error('email')  
+                        {{-- @error('email')  
                         <span class="invalid-feedback" role="alert">  
                             <strong>{{ $message }}</strong>  
                         </span>  
-                        @enderror  
+                        @enderror   --}}
                         <img src="{{ asset('adminassets/images/email-svgrepo-com.svg') }}" alt="" class="input-group-text">  
                     </div>  
                     <div class="input-group mb-3">  
                         <input type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">  
-                        @error('password')  
+                        {{-- @error('password')  
                         <span class="invalid-feedback" role="alert">  
                             <strong>{{ $message }}</strong>  
                         </span>  
-                        @enderror  
+                        @enderror   --}}
                         <img src="{{ asset('adminassets/images/password-svgrepo-com.svg') }}" alt="" class="input-group-text">  
                     </div>  
                     <div class="input-group mb-5">  
                         <input type="password" placeholder="Confirm Password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password">  
-                        @error('password_confirmation')  
+                        {{-- @error('password_confirmation')  
                         <span class="invalid-feedback" role="alert">  
                             <strong>{{ $message }}</strong>  
                         </span>  
-                        @enderror  
+                        @enderror   --}}
                         <img src="{{ asset('adminassets/images/password-svgrepo-com.svg') }}" alt="" class="input-group-text">  
                     </div>  
                     <button class="btn btn-dark px-5 mb-2" type="submit">  
@@ -86,7 +86,5 @@
             </div>  
         </div>  
     </div>  
-
 </body>  
-
 </html>

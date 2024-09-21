@@ -22,7 +22,7 @@ class PublicController extends Controller
             $query
             ->where('published', 1)
             ->take(3);   
-        }])->limit(5)->get();  
+        }])->limit(3)->get();  
 
 
         $testimonials = Testimonial::where('published', 1)->latest()->take(3)->get();  
